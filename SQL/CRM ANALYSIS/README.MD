@@ -1,14 +1,4 @@
-Questions:	
-
-Top 10 Member Account Code:
-- By Sales Quantity
-- By Sales Amount
-
-Analyze by Scheme Name	
-- By Sales Quantity
-- By Sales Amount
-
-Top 10 Items sold					
+				
 
 Explain:
 Segmentation
@@ -18,8 +8,7 @@ Segmentation
 - CLIENTELING or CT ($3K - <$10K)
 - OTHERS (Spend threshold < $3K)
 							
-Note:							
-1. Không được dời vị trí các cột							
-2. Các trường thông tin khai thác được càng nhiều càng tốt							
-3. Nếu sử dụng công thức thì để nguyên công thức/ Nếu sử dụng pivot thì để nguyên pivot							
-4. Đưa ra insights từ các metrics khai thác được							
+Write code to show: 
+Total no. of clients, Total Sales, Total no. of transactions, Total items sold, Average transaction value, Unit per transaction, Transactions with more than 2 
+items of each segmentation.
+						
