@@ -1,0 +1,127 @@
+-- segmentation table
+with cte as
+(select
+	  `Member Account Code`,
+	  case
+	  when sum(`Sales Amt`)/23360 > 50000 then 'platinum'
+	  when sum(`Sales Amt`)/23360< 50000 and sum(`Sales Amt`)/23360> 25000 then 'gold'
+	  when sum(`Sales Amt`)/23360< 25000 and sum(`Sales Amt`)/23360>10000 then 'silver'
+	  when sum(`Sales Amt`)/23360< 10000 and sum(`Sales Amt`)/23360> 3000 then 'clienteling'
+	  else 'others' end as segmentation
+from test_assesment ta
+group by `Member Account Code` )
+
+-- total full
+select
+	  'Total' as Segmentation,
+	  COUNT(DISTINCT `Member Account Code`) as Total_no_of_clients,
+	  ROUND(SUM(`Sales Amt`)/23360, 2) as Total_Sales,
+	  COUNT(distinct `Invoice`) as Total_no_of_transactions,
+	  SUM(`Sales Qty`) as Total_Items_Sold,
+	  ROUND((SUM(`Sales Amt`)/23360)/COUNT(distinct `Invoice`), 2) as Average_transaction_value,
+	  ROUND(SUM(`Sales Qty`)/ COUNT(distinct `Invoice`), 2) as Unit_per_transaction,
+	  (COUNT(distinct `Invoice`)- Count(case when Invoice not in (select Invoice 
+							from test_assesment ta
+							group by Invoice 
+							having sum(`Sales Qty`) >=2
+		) then Invoice end)) as Transaction_more_2
+FROM test_assesment ta
+
+union 
+-- total platinum
+select
+	  'Platinum' as Segmentation,
+	  COUNT(DISTINCT `Member Account Code`) as Total_no_of_clients,
+	  ROUND(SUM(`Sales Amt`)/23360, 2) as Total_Sales,
+	  COUNT(distinct `Invoice`) as Total_no_of_transactions,
+	  SUM(`Sales Qty`) as Total_Items_Sold,
+	  ROUND((SUM(`Sales Amt`)/23360)/COUNT(distinct `Invoice`), 2) as Average_transaction_value,
+	  ROUND(SUM(`Sales Qty`)/ COUNT(distinct `Invoice`), 2) as Unit_per_transaction,
+	  (COUNT(distinct `Invoice`)- Count(case when Invoice not in (select Invoice 
+							from test_assesment ta
+							group by Invoice 
+							having sum(`Sales Qty`) >=2
+		) then Invoice end)) as Transaction_more_2
+FROM test_assesment ta
+where `Member Account Code` in (select `Member Account Code` from cte where segmentation = 'platinum')
+
+union 
+-- total gold
+select
+	  'Gold' as Segmentation,
+	  COUNT(DISTINCT `Member Account Code`) as Total_no_of_clients,
+	  ROUND(SUM(`Sales Amt`)/23360, 2) as Total_Sales,
+	  COUNT(distinct `Invoice`) as Total_no_of_transactions,
+	  SUM(`Sales Qty`) as Total_Items_Sold,
+	  ROUND((SUM(`Sales Amt`)/23360)/COUNT(distinct `Invoice`), 2) as Average_transaction_value,
+	  ROUND(SUM(`Sales Qty`)/ COUNT(distinct `Invoice`), 2) as Unit_per_transaction,
+	  (COUNT(distinct `Invoice`)- Count(case when Invoice not in (select Invoice 
+							from test_assesment ta
+							group by Invoice 
+							having sum(`Sales Qty`) >=2
+		) then Invoice end)) as Transaction_more_2
+FROM test_assesment ta
+where `Member Account Code` in (select `Member Account Code` from cte where segmentation = 'gold')
+
+union 
+-- total silver
+SELECT 
+      'Silver' as Segmentation,
+	  COUNT(DISTINCT `Member Account Code`) as Total_no_of_clients,
+	  ROUND(SUM(`Sales Amt`)/23360, 2) as Total_Sales,
+	  COUNT(distinct `Invoice`) as Total_no_of_transactions,
+	  SUM(`Sales Qty`) as Total_Items_Sold,
+	  ROUND((SUM(`Sales Amt`)/23360)/COUNT(distinct `Invoice`), 2) as Average_transaction_value,
+	  ROUND(SUM(`Sales Qty`)/ COUNT(distinct `Invoice`), 2) as Unit_per_transaction,
+	  (COUNT(distinct `Invoice`)- Count(case when Invoice not in (select Invoice 
+							from test_assesment ta
+							group by Invoice 
+							having sum(`Sales Qty`) >=2
+		) then Invoice end)) as Transaction_more_2
+FROM test_assesment ta
+where `Member Account Code` in (select `Member Account Code` from cte where segmentation = 'silver')
+
+union 
+-- total clienteling
+SELECT 
+	  'Clienteling' as Segmentation,
+	  COUNT(DISTINCT `Member Account Code`) as Total_no_of_clients,
+	  ROUND(SUM(`Sales Amt`)/23360, 2) as Total_Sales,
+	  COUNT(distinct `Invoice`) as Total_no_of_transactions,
+	  SUM(`Sales Qty`) as Total_Items_Sold,
+	  ROUND((SUM(`Sales Amt`)/23360)/COUNT(distinct `Invoice`), 2) as Average_transaction_value,
+	  ROUND(SUM(`Sales Qty`)/ COUNT(distinct `Invoice`), 2) as Unit_per_transaction,
+	  (COUNT(distinct `Invoice`)- Count(case when Invoice not in (select Invoice 
+							from test_assesment ta
+							group by Invoice 
+							having sum(`Sales Qty`) >=2
+		) then Invoice end)) as Transaction_more_2
+FROM test_assesment ta
+where `Member Account Code` in (select `Member Account Code` from cte where segmentation = 'clienteling')
+
+union 
+-- total others
+SELECT 
+ 	  'Others' as Segmentation,
+	  COUNT(DISTINCT `Member Account Code`) as Total_no_of_clients,
+	  ROUND(SUM(`Sales Amt`)/23360, 2) as Total_Sales,
+	  COUNT(distinct `Invoice`) as Total_no_of_transactions,
+	  SUM(`Sales Qty`) as Total_Items_Sold,
+	  ROUND((SUM(`Sales Amt`)/23360)/COUNT(distinct `Invoice`), 2) as Average_transaction_value,
+	  ROUND(SUM(`Sales Qty`)/ COUNT(distinct `Invoice`), 2) as Unit_per_transaction,
+	  (COUNT(distinct `Invoice`)- Count(case when Invoice not in (select Invoice 
+							from test_assesment ta
+							group by Invoice 
+							having sum(`Sales Qty`) >=2
+		) then Invoice end)) as Transaction_more_2
+FROM test_assesment ta
+where `Member Account Code` in (select `Member Account Code` from cte where segmentation = 'others')
+
+
+
+
+
+
+
+
+
