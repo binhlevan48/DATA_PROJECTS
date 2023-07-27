@@ -1,3 +1,4 @@
+-- Tình hình key BHD
 select count(distinct(CustomerID)) as total_key , cast(Date as Date) as Date , 'BHD' as Service_Name
 
 from Log_BHD_MovieID BHD
@@ -12,6 +13,7 @@ group by cast(Date as Date)
 
 union
 
+-- Tình hình key FIM+
 select count(distinct(CustomerID)) as total_key , cast(Date as Date) as Date , 'FIM+' as Service_Name
 
 from Log_Fimplus_MovieID FIM
@@ -26,6 +28,7 @@ group by cast(Date as Date)
 
 union
 
+-- Tình hình key PHIM GOI
 select count(distinct(L.CustomerID)) as total_key , L.Date , 'PHIM GOI' as Service_Name
 
 from Log_Get_DRM_List L
@@ -36,4 +39,4 @@ left join CustomerService CS on L.CustomerID = CS.CustomerID
 
 group by L.Date
 
-order by Date desc
+order by Date desc 
