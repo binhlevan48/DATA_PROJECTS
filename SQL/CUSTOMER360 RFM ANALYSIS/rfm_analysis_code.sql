@@ -1,5 +1,4 @@
-with tohop_rfm as
-(with rfm_score as
+with rfm_score as
 (with rn_rfm as -- Tính row_number của từng chỉ số r,f,m
 (select customerid,
 	   datediff(date('2022-09-02'), max(purchase_date)) as recency,
