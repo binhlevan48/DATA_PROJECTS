@@ -1,1 +1,1 @@
-Have a quick look at link: novypro.com/project/collection-analysis-power-bi
+Have a quick look at link: https://www.novypro.com/project/collection-analysis-power-bi
