@@ -34,10 +34,9 @@ select
 	  sum(`sales qty`) as total_items_sold,
 	  round((sum(`sales amt`)/23360)/count(distinct `invoice`), 2) as average_transaction_value,
 	  round(sum(`sales qty`)/ count(distinct `invoice`), 2) as unit_per_transaction,
-	  (count(distinct `invoice`)- count(case when invoice not in (select invoice 
-																  from test_assesment ta
-																  group by invoice 
-																  having sum(`sales qty`) >=2
+	  (count(distinct `invoice`)- count(case when invoice not in (select invoice from test_assesment ta
+								      group by invoice 
+								      having sum(`sales qty`) >=2
 								) then invoice end)) as transaction_more_2
 from test_assesment ta
 
@@ -51,10 +50,9 @@ select
 	  sum(`sales qty`) as total_items_sold,
 	  round((sum(`sales amt`)/23360)/count(distinct `invoice`), 2) as average_transaction_value,
 	  round(sum(`sales qty`)/ count(distinct `invoice`), 2) as unit_per_transaction,
-	  (count(distinct `invoice`)- count(case when invoice not in (select invoice 
-																  from test_assesment ta
-																  group by invoice 
-																  having sum(`sales qty`) >=2
+	  (count(distinct `invoice`)- count(case when invoice not in (select invoice from test_assesment ta
+								      group by invoice 
+								      having sum(`sales qty`) >=2
 								) then invoice end)) as transaction_more_2
 from test_assesment ta
 where `member account code` in (select `member account code` from segmentation_tab where segmentation = 'platinum')
@@ -69,11 +67,10 @@ select
 	  sum(`sales qty`) as total_items_sold,
 	  round((sum(`sales amt`)/23360)/count(distinct `invoice`), 2) as average_transaction_value,
 	  round(sum(`sales qty`)/ count(distinct `invoice`), 2) as unit_per_transaction,
-	  (count(distinct `invoice`)- count(case when invoice not in (select invoice 
-																  from test_assesment ta
-																  group by invoice 
-																  having sum(`sales qty`) >=2
-		                        ) then invoice end)) as transaction_more_2
+	  (count(distinct `invoice`)- count(case when invoice not in (select invoice from test_assesment ta
+								      group by invoice 
+								      having sum(`sales qty`) >=2
+		                                              ) then invoice end)) as transaction_more_2
 from test_assesment ta
 where `member account code` in (select `member account code` from segmentation_tab where segmentation = 'gold')
 
@@ -87,10 +84,9 @@ select
 	  sum(`sales qty`) as total_items_sold,
 	  round((sum(`sales amt`)/23360)/count(distinct `invoice`), 2) as average_transaction_value,
 	  round(sum(`sales qty`)/ count(distinct `invoice`), 2) as unit_per_transaction,
-	  (count(distinct `invoice`)- count(case when invoice not in (select invoice 
-																  from test_assesment ta
-																  group by invoice 
-																  having sum(`sales qty`) >=2
+	  (count(distinct `invoice`)- count(case when invoice not in (select invoice from test_assesment ta
+								      group by invoice 
+								      having sum(`sales qty`) >=2
 								) then invoice end)) as transaction_more_2
 from test_assesment ta
 where `member account code` in (select `member account code` from segmentation_tab where segmentation = 'silver')
@@ -105,10 +101,9 @@ select
 	  sum(`sales qty`) as total_items_sold,
 	  round((sum(`sales amt`)/23360)/count(distinct `invoice`), 2) as average_transaction_value,
 	  round(sum(`sales qty`)/ count(distinct `invoice`), 2) as unit_per_transaction,
-	  (count(distinct `invoice`)- count(case when invoice not in (select invoice 
-																  from test_assesment ta
-																  group by invoice 
-																  having sum(`sales qty`) >=2
+	  (count(distinct `invoice`)- count(case when invoice not in (select invoice from test_assesment ta
+								      group by invoice 
+								      having sum(`sales qty`) >=2
 								) then invoice end)) as transaction_more_2
 from test_assesment ta
 where `member account code` in (select `member account code` from segmentation_tab where segmentation = 'clienteling')
@@ -123,10 +118,9 @@ select
 	  sum(`sales qty`) as total_items_sold,
 	  round((sum(`sales amt`)/23360)/count(distinct `invoice`), 2) as average_transaction_value,
 	  round(sum(`sales qty`)/ count(distinct `invoice`), 2) as unit_per_transaction,
-	  (count(distinct `invoice`)- count(case when invoice not in (select invoice 
-																  from test_assesment ta
-																  group by invoice 
-																  having sum(`sales qty`) >=2
+	  (count(distinct `invoice`)- count(case when invoice not in (select invoice from test_assesment ta
+								      group by invoice 
+								      having sum(`sales qty`) >=2
 								) then invoice end)) as transaction_more_2
 from test_assesment ta
 where `member account code` in (select `member account code` from segmentation_tab where segmentation = 'others')
